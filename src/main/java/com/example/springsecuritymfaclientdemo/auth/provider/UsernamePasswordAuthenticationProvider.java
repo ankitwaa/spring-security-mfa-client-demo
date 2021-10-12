@@ -29,14 +29,13 @@ public class UsernamePasswordAuthenticationProvider implements AuthenticationPro
         try {
             authenticate = remoteAuthenticationProvider.authenticate(username, password);
             if(authenticate){
-                authentication.setAuthenticated(true);
+                return new CustomUsernamePasswordAuthentication(username, password);
             }else{
                 throw new BadCredentialsException("User is not valid!");
             }
         } catch (CredentialException e) {
             throw new BadCredentialsException("User is not valid!");
         }
-        return authentication;
     }
 
     @Override

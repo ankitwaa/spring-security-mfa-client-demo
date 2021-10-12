@@ -31,14 +31,13 @@ public class UsernameOtpAuthenticationProvider implements AuthenticationProvider
         try {
             authenticate = remoteAuthenticationProvider.authenticateOtp(username, password);
             if(authenticate){
-                authentication.setAuthenticated(true);
+                return new UsernameOtpAuthentication(username, password);
             }else{
                 throw new BadCredentialsException("User is not valid!");
             }
         } catch (CredentialException e) {
             throw new BadCredentialsException("User is not valid!");
         }
-        return authentication;
     }
 
     @Override
