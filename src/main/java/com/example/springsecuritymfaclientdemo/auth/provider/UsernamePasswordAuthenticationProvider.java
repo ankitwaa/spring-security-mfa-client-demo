@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import javax.security.auth.login.CredentialException;
 
-@Component
+@Component("usernamePasswordAuthenticationProvider")
 public class UsernamePasswordAuthenticationProvider implements AuthenticationProvider {
 
     private RemoteAuthenticationProvider remoteAuthenticationProvider;

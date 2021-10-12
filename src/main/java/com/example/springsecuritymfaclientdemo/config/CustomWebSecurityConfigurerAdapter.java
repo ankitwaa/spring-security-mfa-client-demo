@@ -1,5 +1,7 @@
 package com.example.springsecuritymfaclientdemo.config;
 
+import com.example.springsecuritymfaclientdemo.auth.filter.CustomInitialAuthenticationFilter;
+import com.example.springsecuritymfaclientdemo.auth.filter.JwtAuthenticationFilter;
 import com.example.springsecuritymfaclientdemo.auth.provider.UsernameOtpAuthenticationProvider;
 import com.example.springsecuritymfaclientdemo.auth.provider.UsernamePasswordAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,18 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
 
     private UsernamePasswordAuthenticationProvider usernamePasswordAuthenticationProvider;
     private UsernameOtpAuthenticationProvider usernameOtpAuthenticationProvider;
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
+    private CustomInitialAuthenticationFilter customInitialAuthenticationFilter;
+
+    @Autowired
+    public void setJwtAuthenticationFilter(JwtAuthenticationFilter jwtAuthenticationFilter) {
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+    }
+
+    @Autowired
+    public void setCustomInitialAuthenticationFilter(CustomInitialAuthenticationFilter customInitialAuthenticationFilter) {
+        this.customInitialAuthenticationFilter = customInitialAuthenticationFilter;
+    }
 
     @Qualifier("usernamePasswordAuthenticationProvider")
     @Autowired
